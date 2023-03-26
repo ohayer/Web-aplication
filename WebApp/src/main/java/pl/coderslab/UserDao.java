@@ -12,20 +12,21 @@ import java.util.List;
 public class UserDao {
 
     private static final String FIND_ALL_BOOKS_QUERY = "SELECT * FROM users;";
+
     public List<User> findAll() {
         List<User> userList = new ArrayList<>();
 
-        try(Connection conn = DbUtil.getConnection()) {
-            PreparedStatement ps= conn.prepareStatement(FIND_ALL_BOOKS_QUERY);
+        try (Connection conn = DbUtil.getConnection()) {
+            PreparedStatement ps = conn.prepareStatement(FIND_ALL_BOOKS_QUERY);
             ResultSet rs = ps.executeQuery();
-            while (rs.next()){
-                int id= rs.getInt("id");
+            while (rs.next()) {
+                int id = rs.getInt("id");
                 String name = rs.getString("username");
                 String email = rs.getString("email");
                 String password = rs.getString("password");
                 userList.add(new User(id, name, email, password));
             }
-        } catch (SQLException e){
+        } catch (SQLException e) {
             System.out.println(e.getMessage());
             e.printStackTrace();
         }
@@ -54,8 +55,9 @@ public class UserDao {
         }
         return null;
     }
-    public User create(User user){
-        try(Connection conn = DbUtil.getConnection()) {
+
+    public User create(User user) {
+        try (Connection conn = DbUtil.getConnection()) {
             PreparedStatement pS = conn.prepareStatement("INSERT INTO users(username,email,password) VALUES (?, ?,?)");
             pS.setString(1, user.getUserName());
             pS.setString(2, user.getEmail());
@@ -65,13 +67,15 @@ public class UserDao {
 
 
         } catch (SQLException e) {
-            System.err.println("User error added"+ e.getMessage());;
+            System.err.println("User error added" + e.getMessage());
+            ;
         }
         return user;
 
     }
-    public void update(int id,User user){
-        try(Connection conn = DbUtil.getConnection()) {
+
+    public void update(int id, User user) {
+        try (Connection conn = DbUtil.getConnection()) {
             PreparedStatement pS = conn.prepareStatement("Update users set username=?,email=?,password=? where id = ?");
             pS.setString(1, user.getUserName());
             pS.setString(2, user.getEmail());
@@ -82,17 +86,19 @@ public class UserDao {
 
 
         } catch (SQLException e) {
-            System.err.println("User error added"+ e.getMessage());;
+            System.err.println("User error added" + e.getMessage());
+            ;
         }
 
 
     }
 
-    public boolean delete(User user){
+    public boolean delete(User user) {
         try {
+            DbUtil d = new DbUtil();
             DbUtil.remove(DbUtil.getConnection(), "users", user.getId());
             System.out.println("User delete successfully");
-        }  catch (SQLException e) {
+        } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         return true;

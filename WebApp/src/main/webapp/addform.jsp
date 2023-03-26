@@ -12,20 +12,21 @@
 </head>
 <body>
 <form method="post">
-  <div class="form-group">
-    <label for="userName">Nazwa</label>
-    <input name="userName" type="text" class="form-control" id="userName" placeholder="Nazwa użytkownika">
-  </div>
-  <div class="form-group">
-    <label for="userEmail">Email</label>
-    <input name="userEmail" type="email" class="form-control" id="userEmail" placeholder="Email użytkownika">
-  </div>
-  <div class="form-group">
-    <label for="userPassword">Hasło</label>
-    <input name="userPassword" type="password" class="form-control" id="userPassword" placeholder="Hasło użytkownika">
-  </div>
+    <div class="form-group">
+        <label for="userName">Nazwa</label>
+        <input name="userName" type="text" class="form-control" id="userName" placeholder="Nazwa użytkownika">
+    </div>
+    <div class="form-group">
+        <label for="userEmail">Email</label>
+        <input name="userEmail" type="email" class="form-control" id="userEmail" placeholder="Email użytkownika">
+    </div>
+    <div class="form-group">
+        <label for="userPassword">Hasło</label>
+        <input name="userPassword" type="password" class="form-control" id="userPassword"
+               placeholder="Hasło użytkownika">
+    </div>
 
-  <button type="submit" class="btn btn-primary">Zapisz</button>
+    <button type="submit" class="btn btn-primary">Zapisz</button>
 </form>
 </body>
 </html>

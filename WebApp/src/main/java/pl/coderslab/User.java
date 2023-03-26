@@ -22,7 +22,9 @@ public class User {
     public User() {
 
     }
-
+    public User(int id) {
+        this.id = id;
+    }
 
 
     public int getId() {

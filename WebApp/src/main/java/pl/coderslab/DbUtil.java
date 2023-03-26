@@ -17,7 +17,7 @@ public class DbUtil {
     private static final String DB_USER = "root";
     private static final String DB_PASS = "root";
 
-        private static DataSource dataSource;
+    private static DataSource dataSource;
 
     public static Connection getConnection() throws SQLException {
         try {

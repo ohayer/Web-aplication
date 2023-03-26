@@ -9,7 +9,11 @@ import java.io.IOException;
 public class remove extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        int id = Integer.parseInt(request.getParameter("id"));
+        UserDao userDao = new UserDao();
+        userDao.delete(new User(id));
+        System.out.println("User deleted");
+        response.sendRedirect(request.getContextPath() + "/list");
     }
 
     @Override
