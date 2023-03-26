@@ -8,9 +8,29 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>Add</title>
+    <style>
+    body {
+    background: linear-gradient(to bottom, #4b6cb7, #182848);
+    }
+
+    .form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-size: 30px;
+    }
+    button{
+    margin-top: 20px;
+    margin-bottom: 50px;
+    margin-left: 80px;
+    font-size: 22px;
+    }
+    </style>
 </head>
 <body>
+<div class="form-container">
 <form method="post">
     <div class="form-group">
         <label for="userName">Nazwa</label>
@@ -28,5 +48,6 @@
 
     <button type="submit" class="btn btn-primary">Zapisz</button>
 </form>
+    </div>
 </body>
 </html>

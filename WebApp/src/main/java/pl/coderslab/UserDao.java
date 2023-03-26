@@ -68,8 +68,9 @@ public class UserDao {
 
         } catch (SQLException e) {
             System.err.println("User error added" + e.getMessage());
-            ;
+
         }
+
         return user;
 
     }
