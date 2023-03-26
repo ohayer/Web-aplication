@@ -1,22 +1,22 @@
-import User.UserDao;
+package pl.coderslab;
+
+import pl.coderslab.User;
+import pl.coderslab.UserDao;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
+import java.util.List;
 
-@WebServlet("/")
+@WebServlet("/list")
 public class ListofUser extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-                        getServletContext().getRequestDispatcher("/index.jsp").forward(request,response);
         UserDao userDao = new UserDao();
-        response.getWriter().println(userDao.findAll());
-
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        List<User> users = userDao.findAll();
+        request.setAttribute("users", users);
+        getServletContext().getRequestDispatcher("/blank.jsp").forward(request, response);
     }
 }
+

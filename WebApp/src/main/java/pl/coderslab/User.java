@@ -1,12 +1,16 @@
-package User;
+package pl.coderslab;
 
 public class User {
-    private int id = 1;
+    private int id;
     private String userName;
     private String email;
     private String password;
 
-    public User() {
+    public User(int id, String userName, String email, String password) {
+        this.id = id;
+        this.userName = userName;
+        this.email = email;
+        this.password = password;
     }
 
     public User(String userName, String email, String password) {
@@ -15,9 +19,11 @@ public class User {
         this.password = password;
     }
 
-    public User(int id) {
-        this.id = id;
+    public User() {
+
     }
+
+
 
     public int getId() {
         return id;
@@ -25,7 +31,6 @@ public class User {
 
     public void setId(int id) {
         this.id = id;
-        this.id++;
     }
 
     public String getUserName() {
@@ -52,4 +57,13 @@ public class User {
         this.password = password;
     }
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", userName='" + userName + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                '}';
+    }
 }

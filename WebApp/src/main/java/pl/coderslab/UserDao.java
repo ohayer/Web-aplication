@@ -1,4 +1,4 @@
-package User;
+package pl.coderslab;
 
 import org.mindrot.jbcrypt.BCrypt;
 
@@ -10,29 +10,28 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserDao {
-    public  User[] findAll(){
 
+    private static final String FIND_ALL_BOOKS_QUERY = "SELECT * FROM users;";
+    public List<User> findAll() {
         List<User> userList = new ArrayList<>();
 
         try(Connection conn = DbUtil.getConnection()) {
-            PreparedStatement ps= conn.prepareStatement("SELECT * FROM users");
+            PreparedStatement ps= conn.prepareStatement(FIND_ALL_BOOKS_QUERY);
             ResultSet rs = ps.executeQuery();
             while (rs.next()){
-                int id= rs.getInt(1);
-                String name = rs.getString(2);
-                String email = rs.getString(3);
-                String password = rs.getString(4);
-                System.out.println(String.format("%s %s %s %s", id, name, email, password));
+                int id= rs.getInt("id");
+                String name = rs.getString("username");
+                String email = rs.getString("email");
+                String password = rs.getString("password");
+                userList.add(new User(id, name, email, password));
             }
         } catch (SQLException e){
             System.out.println(e.getMessage());
             e.printStackTrace();
         }
 
-        User[] users = new User[userList.size()];
-        return userList.toArray(users);
+        return userList;
     }
-
 
 
     public User findById(int id) {

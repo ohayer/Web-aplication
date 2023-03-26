@@ -1,4 +1,4 @@
-package User;
+package pl.coderslab;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -13,13 +13,39 @@ public class DbUtil {
 
     private static final String DELETE_QUERY = "DELETE FROM tableName where id = ?";
 
-    private static final String DB_URL = "jdbc:mysql://localhost:3306/workshop3?useSSL=false&characterEncoding=utf8";
+    private static final String DB_URL = "jdbc:mysql://localhost:3306/workshop3?useSSL=false&characterEncoding=utf8&allowPublicKeyRetrieval=true";
     private static final String DB_USER = "root";
     private static final String DB_PASS = "root";
 
-//    public static Connection getConnection() throws SQLException {
-//        return DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
-//    }
+        private static DataSource dataSource;
+
+    public static Connection getConnection() throws SQLException {
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
+    }
+
+
+//        public static Connection getConnection() throws SQLException {
+//            return getInstance().getConnection();   }
+//        private static DataSource getInstance() {
+//            if (dataSource == null) {
+//                try {
+//                    Context initContext = new InitialContext();
+//                    Context envContext = (Context)initContext.lookup("java:/comp/env");
+//                    dataSource = (DataSource)envContext.lookup("jdbc/users");
+//                } catch (NamingException e) {
+//                    e.printStackTrace();
+//
+//                }
+//
+//            }
+//            return dataSource;
+//        }
+
 
     public static void printData(Connection conn, String query, String... columnNames) throws SQLException {
 
@@ -68,18 +94,7 @@ public class DbUtil {
             e.printStackTrace();
         }
     }
-    private static DataSource dataSource;
-    public static Connection getConnection() throws SQLException {
-        return getInstance().getConnection();   }
-    private static DataSource getInstance() {
-        if (dataSource == null) {
-            try {
-                Context initContext = new InitialContext();
-                Context envContext = (Context)initContext.lookup("java:/comp/env");
-                dataSource = (DataSource)envContext.lookup("jdbc/users");
-            } catch (NamingException e) { e.printStackTrace(); }
-        }
-        return dataSource;
-    }
+
+
 }
 
